@@ -24,18 +24,19 @@ const handleCheck = (id) => {
   const listItems = items.map((item) => item.id === id ? {
     ...item, checked: !item.checked} : item);
     setItems(listItems)
-    localStorage.setItems('shoppingList', JSON.stringify(listItems));
+    localStorage.setItem('shoppingList', JSON.stringify(listItems));
   }
 
   const handleDelete = (id) => {
     const listItems = items.filter(item => item.id !== id);
     setItems(listItems);
-    localStorage.setItems('shoppingList', JSON.stringify(listItems));
+    localStorage.setItem('shoppingList', JSON.stringify(listItems));
   }
 
 
   return (
     <main>
+    {items.length ? (
         <ul>
           {items.map((item, index) => (
             <li key={index} className="item">
@@ -58,6 +59,9 @@ const handleCheck = (id) => {
             </li>
           ))}
         </ul>
+    ) : (
+      <p style={{ marginTop: '2rem'}}y>Your list is empty!!!</p>
+    )}
     </main>
   )
 }
