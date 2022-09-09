@@ -27,6 +27,12 @@ const handleCheck = (id) => {
     localStorage.setItems('shoppingList', JSON.stringify(listItems));
   }
 
+  const handleDelete = (id) => {
+    const listItems = items.filter(item => item.id === id);
+    setItems(listItems);
+    localStorage.setItems('shoppingList', JSON.stringify(listItems));
+  }
+
 
   return (
     <main>
@@ -37,8 +43,15 @@ const handleCheck = (id) => {
                 checked={item.checked}
                 onChange={() => {handleCheck(item.id)}}
               />
-              <label>{item.item}</label>
+              <label
+                style={(item.checked ? {textDecoration: 'line-through'} : 
+                null)}
+                onDoubleClick = {() => handleCheck(item.id)}  
+              >
+                {item.item}
+              </label>
               < FaTrashAlt 
+                  onClick={() => handleDelete(item.id)}
                   role="button" 
                   tabIndex="0"             
               />
