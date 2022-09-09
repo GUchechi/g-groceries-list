@@ -5,7 +5,7 @@ const Content = () => {
   const [items, setItems] = useState([
     {
       id: 1,
-      checked: true,
+      checked: false,
       item: "One half pound bag of Cocoa Covered Almonds Unsalted"
   },
   {
@@ -15,10 +15,17 @@ const Content = () => {
   },
   {
       id: 3,
-      checked: true,
+      checked: false,
       item: "Item 3"
   }
 ]);
+
+const handleCheck = (id) => {
+  const listItems = items.map((item) => item.id === id ? {
+    ...item, checked: !item.checked} : item);
+    setItems(listItems)
+  }
+
 
   return (
     <main>
@@ -27,6 +34,7 @@ const Content = () => {
             <li key={index} className="item">
               <input type="checkbox" 
                 checked={item.checked}
+                onChange={() => {handleCheck(item.id)}}
               />
               <label>{item.item}</label>
               < FaTrashAlt 
