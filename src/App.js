@@ -10,6 +10,7 @@ function App() {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('shoppinglist')));
 
 const [newItem, setNewItem] = useState("");
+const [search, setSearch] = useState("");
 
 const setAndSaveItems = (newItems) => {
   setItems(newItems);
@@ -44,7 +45,10 @@ const handleSubmit = (e) => {
   return (
     <div className="App">
      <Header title="Groceries List" />
-     <SearchItem />
+     <SearchItem 
+        search={search}
+        setSearch={setSearch}
+     />
      <AddItem
         newItem={newItem}
         setNewItem={setNewItem}
