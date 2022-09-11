@@ -4,6 +4,7 @@ import AddItem from './AddItem';
 import Content from './Content';
 import Footer from './Footer';
 import Header from './Header';
+import SearchItem from './SearchItem';
 
 function App() {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('shoppinglist')));
@@ -43,6 +44,7 @@ const handleSubmit = (e) => {
   return (
     <div className="App">
      <Header title="Groceries List" />
+     <SearchItem />
      <AddItem
         newItem={newItem}
         setNewItem={setNewItem}
