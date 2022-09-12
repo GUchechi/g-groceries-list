@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AddItem from './AddItem';
 import Content from './Content';
 import Footer from './Footer';
@@ -11,6 +11,10 @@ function App() {
 
 const [newItem, setNewItem] = useState("");
 const [search, setSearch] = useState("");
+
+useEffect(() => {
+  localStorage.setItem('shoppinglist', JSON.stringify(items))
+}, [items])
 
 const setAndSaveItems = (newItems) => {
   setItems(newItems);
