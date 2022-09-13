@@ -14,6 +14,7 @@ const API_URL = 'http://localhost:3500/items';
 const [newItem, setNewItem] = useState("");
 const [search, setSearch] = useState("");
 const [fetchError, setFetchError] = useState(null);
+const [isLoading, setIsLoading] = useState(true);
 
 useEffect(() => {
   
@@ -27,10 +28,15 @@ useEffect(() => {
       setFetchError(null);
     } catch(err) {
       setFetchError(err.message);
+    } finally {
+      setIsLoading(false);
     }
   }
 
-  (async () => await fetchItems())();
+  setTimeout(() => {
+    (async () => await fetchItems())();
+  }, 2000);
+
 }, [])
 
 const setAndSaveItems = (newItems) => {
@@ -76,8 +82,9 @@ const handleSubmit = (e) => {
         setSearch={setSearch}
      />
      <main>
+        {isLoading && <p style={{color:'blue'}}>Loading Items...</p>}
         {fetchError && <p style={{color: 'red'}}>{`Error: ${fetchError}`}</p>}
-        {!fetchError && <Content
+        {!fetchError && !isLoading && <Content
         items={items.filter( item => (item.item).toLowerCase().includes(search.toLowerCase()))}
         handleCheck={handleCheck}
         handleDelete={handleDelete}
