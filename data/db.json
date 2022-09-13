@@ -2,12 +2,12 @@
   "items": [
     {
       "id": 1,
-      "checked": false,
+      "checked": true,
       "item": "Almonds, Unsalted, in the blue bag"
     },
     {
       "id": 2,
-      "checked": false,
+      "checked": true,
       "item": "Pizza"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "id": 5,
-      "checked": false,
+      "checked": true,
       "item": "I'm rich in Christ Jesus"
     }
   ]
